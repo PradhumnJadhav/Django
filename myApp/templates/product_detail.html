@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #573054;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .left-column, .right-column {
+            flex: 50%;
+            padding: 20px;
+        }
+        .left-column img {
+        margin-left: 20%;
+        margin-right: 20%;
+        padding-left: 20%;
+        padding-right: 20%;
+            width: 100px;
+            height: auto;
+        }
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: #b64f00;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            margin-bottom: 20px;
+        }
+        .buy-section {
+            display: flex;
+            align-items: center;
+        }
+        .buy-section button {
+            background-color: #1e618b;
+            border: 1px solid #a88734;
+            border-radius: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">Student Corner</div>
+    </div>
+
+    <!-- Product Detail Container -->
+    <div class="container">
+        <!-- Left Column / Product Image -->
+        <div class="left-column">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                  
+                  <div class="carousel-item">
+                    <img src="{{ current_prod.product_img_url }}" alt="reload">
+                  </div>
+                </div>
+                 
+              </div>
+            
+        </div>
+
+        <!-- Right Column / Product Details -->
+        <div class="right-column">
+            <h1 class="product-title">{{current_prod.product_name}}</h1>
+            <p class="product-price">Rs. {{current_prod.product_price}}</p>
+            <p class="product-description">  {{ current_prod.description}}</p>
+           
+            {% if current_prod.product_price == 0  %}
+
+             <div class="buy-section">
+                <button  style="margin: 5% ;">Book This Product</button>
+             </div>
+            {% else  %}
+            <div class="buy-section">
+             
+                {% if  not current_prod.id in request.user.cart   %}
+            <div>
+              <button style="display: block;padding: 20px;margin: 20px;width: auto  ;background-color: #573054; color: white;"><a href="/addToCart/{{current_prod.id}}" style="text-decoration: none; background-color: #573054; color: white;" >Add to Cart</a> 
+                </button>
+            </div>
+                {% else %}
+                <button style="display: block;padding: 20px;margin: 20px;width: auto  ;background-color: #573054; color: white;"><a href="/removeFromCart/{{current_prod.id}}" style="text-decoration: none; background-color: #573054; color: white;" >Remove </a> 
+                </button>
+
+                {% endif%}
+                <button style="display: block;padding: 20px;margin: 20px;width: auto ;text-decoration: none; background-color: #573054; color: white;">Buy</button>
+
+                <button style="display: block;padding: 20px;margin: 20px;width: auto ;text-decoration: none; background-color: #573054; color: white;">Try Negotiating</button>
+            </div>
+            {% endif %} 
+        </div>
+    </div>
+
+</body>
+</html>
+

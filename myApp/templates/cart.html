@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #573054;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav {
+            background-color: #573054;
+
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+        }
+
+        .nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .main {
+            padding: 20px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 200px;
+            height: auto;
+        }
+
+        .product img {
+            width: 100%;
+        }
+
+        .footer {
+            background-color: #573054;
+
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo" style="display: flexbox;margin-inline: 10%;">Your Cart</div>  
+        <p>                         </p>
+        <div class="header-logo" ><a href="/" style="display:block;color: white; text-decoration: none; margin-inline: 10%;">Home</a></div>
+    </div>
+
+    <!-- Product Detail Container -->
+    <div class="main">
+
+        <h1 style=" color: #573054;">Welcome to Student Corner</h1>
+
+  
+        <div class="product-grid">
+
+
+            {% for x in cart_items%}
+             
+ 
+
+
+
+            <a href="/{{x.id}}/details" onmouseover="changeBackgroundColor(this,'lightpink')"
+                onmouseleave="changeBackgroundColor(this,'white')"
+                style="text-decoration: none; color: black; background-color: white;">
+
+                <div class="product">
+                    <div><img src="{{ x.product_img_url }}" alt="reload" height="200px"></div>
+                    <h2>{{x.product_name}}</h2>
+                    <p>Rs. {{x.product_price}}</p>
+                </div>
+            </a>
+            
+            {% endfor %}
+              
+        </div>
+    </div>  
+ 
+    <!-- Footer --> 
+    <div class="footer">
+        <p>&copy; 2024 Student Corner. All rights reserved.</p>
+    </div>
+
+
+
+    <script>
+        function changeBackgroundColor(element, color) {
+            element.style.backgroundColor = color;
+
+
+        }
+    </script>
+</body>
+
+</html>

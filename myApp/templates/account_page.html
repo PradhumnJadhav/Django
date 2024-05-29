@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+
+</head>
+
+<body>
+    <div class="sidenav" id="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="">Profile</a>
+        <a href="/account/cart">Cart</a>
+        <a href="/account/sell_products">Sell Products</a>
+         
+        <a href="/ ">Go Back</a>
+
+
+
+    </div>
+
+    <div id="main">
+        <span class="openbtn" onclick="openNav()"> Account</span>
+        
+
+  
+         <h1>Profile</h1>
+        <div class="profile-container">
+            <div class="profile-header">
+                <h2 class="username" style="font-weight: normal ;display:inline;">{{ request.user.username}}</h2>
+                
+            </div>
+            <div class="profile-content">
+
+                <div class="profile-section">
+
+                    <p>Email: {{request.user.email}}</p>
+                    <p>Phone:  {{ request.user.phone}}</p>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="update" >
+            <form id="profile-form" style="display: block;">
+                <label for="update_username">Username:</label>
+                <input type="text" id="update_username" name="update_username"  style="display: block;border-radius: 3px; ">
+                 
+                
+                <label for="update_phone">Phone:</label>
+                <input type="tel" id="update_phone" name="update_phone"   style="display: block;" >
+                
+                <button type="submit" style="display: block;border-radius: 3px; background-color:  #573054; color: white;" >Update</button>
+            </form>
+
+
+
+        </div>
+
+        {%  if request.user.is_anonymous %}
+        <div> <a href="/login" style="text-decoration: none; color: black;">Login Please</a></div>
+        {% else  %}
+        <div> <a href="/logout" style="text-decoration: none; color: black;">LogOut</a></div>
+        {% endif %}
+
+    </div>
+ 
+
+
+
+
+
+
+
+  
+
+</body>
+
+</html>
+
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #573054;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #573054;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20%;
+    }
+
+    .openbtn:hover {
+        background-color: lightpink;
+    }
+</style>
+<script>function openNav() {
+        document.getElementById("sidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("sidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+</script>

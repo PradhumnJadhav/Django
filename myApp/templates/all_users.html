@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Users</h1>
+  
+<ul>
+    
+  {% for x in users %}
+  <li><a href="details/{{ x.id }}" style="text-decoration: none;color: #000;">{{ x.firstname }} {{ x.lastname }}</a></li>
+ 
+  {% endfor %}
+</ul>
+
+</body>
+</html>
