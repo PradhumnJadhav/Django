@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@*nuh#7jg(bw27r13z#ol#t-)p=gw!msl+#ij9jdq7j2d13l#3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://needybuddy.eu-north-1.elasticbeanstalk.com/']
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'myApp.UserDetail'
 # Application definition
